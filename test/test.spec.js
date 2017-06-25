@@ -1,6 +1,11 @@
-const addJsonEntry = require('./../index');
-const getDrive = require('./../lib/gdrive.connection.js');
-const DriveApi = require('./../lib/gdrive.api.js');
+const jsondriver = require('./../index');
+const msgs = require('./../lib/errors.js');
+
+function rejectTest(err, done){
+    console.log(err);
+    expect(err).toBeNull();
+    done();
+}
 
 describe("jsondriver tests", () => {
 
@@ -8,7 +13,8 @@ describe("jsondriver tests", () => {
     let authError = null;
 
     beforeAll((done)=>{
-        DriveApi(require('./key.json'))
+        jsondriver
+        .DriveApiFactory(require('./key.json'))
         .then((api)=> { 
             gapi = api;
             done();
@@ -21,37 +27,46 @@ describe("jsondriver tests", () => {
     });
 
     it("remove file called 'test' ", (done)=>{
+        let p = 
         gapi
-        .delete('test')
-        .then(done, done );
+        .deleteJson('test');
+
+        p.then(()=>{
+            done();
+        }, (err)=>{
+            expect(err.msg).toBe(msgs.FILE_NOT_FOUND);
+            done();
+        });
     });
 
+    
     it("insert json file called 'test' ", (done) => {
         gapi
-        .upload('test', [{name:'jsondriver'}])
-        .then(done, (err)=> done(new Error(err)) );
+        .uploadJson('test', [{name:'jsondriver'}])
+        .then(done, (err)=> rejectTest(err, done) );
     });
 
+    
     it("verify if json file 'test' is there", (done)=>{
         gapi
-        .download('test')
+        .downloadJson('test')
         .then((json)=>{
             expect(json[0].name).toBe('jsondriver');
             done();
-        }, err => done(new Error(err)));
+        }, err => rejectTest(err, done) );
     });
 
     it("add one json entry in the test file", (done)=>{
-        addJsonEntry({fileName: 'test', jsonEntry: {entry:0}, gdriveApi:gapi})
+        jsondriver
+        .addJsonEntry({fileName: 'test', jsonEntry: {entry:0}, gdriveApi:gapi})
         .then(()=>{
             gapi
-            .download('test')
+            .downloadJson('test')
             .then((json)=>{
                 expect(json[1].entry).toBe(0);
                 done();
-            }, err=>done(new Error(err)));
-        }, err=> done(new Error(err)));
+            }, err=> rejectTest(err, done) );
+        }, err=> rejectTest(err, done) );
     });
-
 
 });
