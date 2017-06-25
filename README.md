@@ -14,7 +14,7 @@ npm install jsondrive --save
 When I was building this, the main purpose was to add an entry into an array inside a json file at google drive.
 With this method, you will insert an object into that array and write to the json file.
 
-```javsascript
+```javascript
  //load our facade object
  const jsondrive = require('jsondrive');
 
