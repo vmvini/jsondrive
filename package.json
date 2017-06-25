@@ -1,10 +1,14 @@
 {
   "name": "jsondrive",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "saves and updates json files on google drive",
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/.bin/jasmine ./test/test.spec.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vmvini/jsondrive.git"
   },
   "keywords": [
     "node",
