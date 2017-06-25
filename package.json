@@ -1,0 +1,26 @@
+{
+  "name": "jsondriver",
+  "version": "0.0.1",
+  "description": "saves and updates json files on google drive",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/jasmine ./test/test.spec.js"
+  },
+  "keywords": [
+    "node",
+    "js",
+    "google",
+    "drive",
+    "gdrive",
+    "json"
+  ],
+  "author": "vmvinidev@gmail.com",
+  "license": "MIT",
+  "dependencies": {
+    "foreach-promise": "0.0.1",
+    "googleapis": "^19.0.0"
+  },
+  "devDependencies": {
+    "jasmine": "^2.6.0"
+  }
+}
