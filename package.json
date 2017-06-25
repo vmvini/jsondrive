@@ -1,6 +1,6 @@
 {
   "name": "jsondrive",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "saves and updates json files on google drive",
   "main": "index.js",
   "scripts": {
