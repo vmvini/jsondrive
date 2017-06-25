@@ -13,6 +13,7 @@ describe("jsondriver tests", () => {
     let authError = null;
 
     beforeAll((done)=>{
+        jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
         jsondriver
         .DriveApiFactory(require('./key.json'))
         .then((api)=> { 
