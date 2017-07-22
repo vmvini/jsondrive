@@ -22,7 +22,8 @@
   "license": "MIT",
   "dependencies": {
     "foreach-promise": "0.0.1",
-    "googleapis": "^19.0.0"
+    "googleapis": "^19.0.0",
+    "venqueuer": "^1.0.4"
   },
   "devDependencies": {
     "jasmine": "^2.6.0"
